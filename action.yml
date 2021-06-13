@@ -1,0 +1,12 @@
+name: 'OVR Platform Tool'
+description: 'Runs ovr_platform_tool.exe through WINE'
+inputs:
+        commands:
+                description: 'Commands to be passed'
+                required: true
+                default: '--help'
+runs:
+        using: "composite"
+        steps:
+                - run: docker run -v $PWD/wine:/root/.wine -v ${{ github.action_path }}:/action_path -v ${{ github.workspace }}:/workspace -w /workspace jmschrack/winehq:stable wine /action_path/ovr-platform-util.exe ${{ inputs.commands }}
+                  shell: bash
