@@ -8,5 +8,5 @@ inputs:
 runs:
         using: "composite"
         steps:
-                - run: docker run -v $PWD/wine:/root/.wine -v ${{ github.action_path }}:/action_path -v ${{ github.workspace }}:/workspace -w /workspace jmschrack/winehq:stable wine /action_path/ovr-platform-util.exe ${{ inputs.commands }}
+                - run: docker run -v ${{ github.action_path }}:/action_path -v ${{ github.workspace }}:/workspace -w /workspace jmschrack/winehq:stable wine /action_path/ovr-platform-util.exe ${{ inputs.commands }}
                   shell: bash
